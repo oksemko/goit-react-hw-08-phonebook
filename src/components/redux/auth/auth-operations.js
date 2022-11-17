@@ -93,4 +93,5 @@ export const operations = {
   register,
   logIn,
   logOut,
+  fetchCurrentUser,
 };
