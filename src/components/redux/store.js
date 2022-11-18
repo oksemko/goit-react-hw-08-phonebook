@@ -1,19 +1,43 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { setupListeners } from '@reduxjs/toolkit/dist/query';
-import { contactsApi } from 'components/redux/api-service';
-import { filter } from './Filter/reducer';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+// ((https://redux-toolkit.js.org/usage/usage-guide#working-with-non-serializable-data) ===> link!)
+import storage from 'redux-persist/lib/storage';
+import contactsReducer from './contacts/contacts-reducer';
+import authSlice from './auth/auth-slice';
 
-export const store = configureStore({
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whilelist: ['token'],
+};
+
+const middleWare = [
+  ...getDefaultMiddleware({
+    serializableCheck: {
+      ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+];
+
+const store = configureStore({
   reducer: {
-    [contactsApi.reducerPath]: contactsApi.reducer, // (Add the generated reducer as a specific top-level slice)
-    filter: filter,
+    auth: persistReducer(authPersistConfig, authSlice.reducer),
+    contacts: reducer,
   },
-  middleware: getDefaultMiddleware => [
-    //(api middleware enables caching, invalidation, polling ...)
-    ...getDefaultMiddleware(),
-    contactsApi.middleware,
-  ],
+  middleware,
   devTools: process.env.NODE_ENV === 'development',
 });
 
-setupListeners(store.dispatch);
+const persistor = persistStore(store);
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default { store, persistor };
