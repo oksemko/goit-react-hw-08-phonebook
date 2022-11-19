@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { HashRouter } from 'react-router-dom';
 
-import { App } from 'components/App/App';
+import { App } from 'App/App';
 import { store } from './components/redux/store';
 
 import './index.css';
