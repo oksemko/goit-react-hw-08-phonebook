@@ -5,7 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { HashRouter } from 'react-router-dom';
 
 import { App } from 'App/App';
-import { store } from './components/redux/store';
+import { store } from './redux/store';
 
 import './index.css';
 
