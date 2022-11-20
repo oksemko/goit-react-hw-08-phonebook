@@ -1,23 +1,60 @@
-import { useFetchContactsQuery } from '../components/redux/api-service';
+import { Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { ContactsForm } from '../components/ContactsForm/ContactsForm';
+import ContactsForm from 'components/ContactsForm/ContactsForm';
 import { ContactsList } from '../components/ContactsList/ContactsList';
 import { Filter } from '../components/Filter/Filter';
+
+import { AppBar } from 'components/AppBar';
+import { PrivateRoute } from 'components/PrivateRoute';
+import { PublicRoute } from 'components/PublicRoute';
+
+import { HomeView, LoginView, RegisterView } from 'views';
+
+import { authOperations } from '../redux/auth';
 
 import { Container, Title } from './App.styled';
 
 
 function App() {
-  const fetchContacts = useFetchContactsQuery()
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
 
     return (
       <Container>
-        <Title>Phonebook</Title>
-        <ContactsForm contacts={fetchContacts} />
-        <Title>Contacts</Title>
-        <Filter
-        title="Find contact by name" />
-        <ContactsList contacts={fetchContacts} />
+        <AppBar />
+
+        <Routes>
+          <Route path="/" element={<HomeView />} />
+          <Route path="register"
+            element={
+              <PublicRoute>
+                <RegisterView />
+              </PublicRoute>
+            }
+              />
+              <Route path="login"
+                element={
+                  <PublicRoute>
+                    <LoginView />
+                </PublicRoute>
+              }
+          />
+          <Route path="contacts"
+            element={
+              <PrivateRoute>
+                <ContactsForm />
+                <Filter title="Find contact by name" />
+                <ContactsList />
+            </PrivateRoute>
+          }
+          />
+          <Route path="*" element={<></>} />
+          </Routes>
       </Container>
     );
 }
