@@ -11,7 +11,7 @@ export default function UserMenu() {
 
   return (
     <Container>
-      <Image>{avatar}</Image>
+      <Image img src={avatar} alt=""></Image>
       <Span>Welcome, {name}</Span>
       <Button type="button" onClick={() => dispatch(authOperations.logOut())}>
         Sign out
