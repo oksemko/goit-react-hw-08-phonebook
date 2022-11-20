@@ -6,7 +6,7 @@ import ContactsForm from 'components/ContactsForm/ContactsForm';
 import { ContactsList } from '../components/ContactsList/ContactsList';
 import { Filter } from '../components/Filter/Filter';
 
-import AppBar from 'components/AppBar';
+import AppBar from 'components/AppBar/AppBar';
 import { PrivateRoute } from 'components/PrivateRoute';
 import { PublicRoute } from 'components/PublicRoute';
 
@@ -14,7 +14,7 @@ import { HomeView, LoginView, RegisterView } from '../views';
 
 import { authOperations } from '../redux/auth';
 
-import { Container, Title } from './App.styled';
+import { Container} from './App.styled';
 
 
 function App() {

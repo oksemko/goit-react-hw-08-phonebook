@@ -33,7 +33,7 @@ const store = configureStore({
     auth: persistReducer(authPersistConfig, authSlice.reducer),
     contacts: contactsReducer,
   },
-  middleware,
+  middleWare,
   devTools: process.env.NODE_ENV === 'development',
 });
 

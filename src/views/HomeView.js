@@ -17,3 +17,5 @@ const HomeView = () => (
     <h1 style={styles.title}>Phonebook</h1>
   </div>
 );
+
+export default HomeView;
