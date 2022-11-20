@@ -6,11 +6,11 @@ import ContactsForm from 'components/ContactsForm/ContactsForm';
 import { ContactsList } from '../components/ContactsList/ContactsList';
 import { Filter } from '../components/Filter/Filter';
 
-import { AppBar } from 'components/AppBar';
+import AppBar from 'components/AppBar';
 import { PrivateRoute } from 'components/PrivateRoute';
 import { PublicRoute } from 'components/PublicRoute';
 
-import { HomeView, LoginView, RegisterView } from 'views';
+import { HomeView, LoginView, RegisterView } from '../views';
 
 import { authOperations } from '../redux/auth';
 
