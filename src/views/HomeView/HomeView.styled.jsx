@@ -62,3 +62,16 @@ box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.664),
   inset 4px 4px 6px 0 rgba(255, 255, 255, 0.664);
 }
 `
+
+export const Header = styled.header`
+color: #c4c3ca;
+  box-shadow: 0 8px 14px 0 rgba();
+    font-family: Roboto, Arial, sans-serif;
+  font-size: 5vmax;
+  /*text-shadow: -5px -5px  #c4c3ca;*/
+  background: radial-gradient( #c4c3ca 1px, transparent 1px);
+  background-size: 3px 3px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 auto;
+`

@@ -15,7 +15,7 @@ export default function AuthNav() {
         Registration
       </NavLink>
       <NavLink
-        to="login"
+        to="/login"
         className={({ isActive }) =>
           isActive ? `${style.activeLink}` : `${style.link}`
         }

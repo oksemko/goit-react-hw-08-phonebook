@@ -13,7 +13,7 @@ export const Title = styled.a`
 color: #c4c3ca;
   box-shadow: 0 8px 14px 0 rgba();
     font-family: Roboto, Arial, sans-serif;
-  font-size: 7vmax;
+  font-size: 5vmax;
   /*text-shadow: -5px -5px  #c4c3ca;*/
   background: radial-gradient( #c4c3ca 1px, transparent 1px);
   background-size: 3px 3px;
@@ -61,7 +61,7 @@ border-radius: 10px;
 font-size: 14px;
 padding: 10px;
     margin-top: 20px;
-    width: 180px;
+    width: 200px;
     background-color: white;
     cursor: pointer;
     box-shadow: 0px 1px 2px 0px rgba(0, 65, 200, 0.5),

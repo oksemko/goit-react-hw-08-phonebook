@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
 
+import { Loader } from 'components/Loader/Loader';
+import { ColorRing } from 'react-loader-spinner';
+
 import {
   Container,
   Title,
@@ -60,7 +63,15 @@ export default function LoginView() {
           />
         </Label>
 
-        <Button type="submit">Sign In</Button>
+        <Button type="submit">
+        <ColorRing
+          height={200}
+          width={200}
+          ariaLabel="blocks-loading"
+          />
+        <Loader />
+        Sign In
+      </Button>
       </Form>
     </Container>
   );

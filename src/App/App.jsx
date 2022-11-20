@@ -15,6 +15,8 @@ import { HomeView, LoginView, RegisterView } from '../views';
 import { authOperations } from '../redux/auth';
 
 import { Container} from './App.styled';
+// import { Loader } from 'components/Loader/Loader';
+// import { ColorRing } from 'react-loader-spinner';
 
 
 function App() {

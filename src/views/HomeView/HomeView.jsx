@@ -1,8 +1,9 @@
-import { Container, Title } from './HomeView.styled';
+import { Container, Title, Header } from './HomeView.styled';
 
 
 const HomeView = () => (
   <Container>
+    <Header>Welcome to</Header>
     <Title>Phonebook</Title>
   </Container>
 );

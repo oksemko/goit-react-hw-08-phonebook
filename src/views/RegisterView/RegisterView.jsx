@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
 
+import { Loader } from 'components/Loader/Loader';
+import { ColorRing } from 'react-loader-spinner';
+
 import {
   Container,
   Title,
@@ -11,18 +14,6 @@ import {
   Button,
 } from './RegisterView.styled';
 
-// const styles = {
-//   form: {
-//     width: 320,
-//     marginLeft: 'auto',
-//     marginRight: 'auto',
-//   },
-//   label: {
-//     display: 'flex',
-//     flexDirection: 'column',
-//     marginBottom: 15,
-//   },
-// };
 
 export default function RegisterView() {
   const dispatch = useDispatch();
@@ -85,7 +76,15 @@ export default function RegisterView() {
           />
         </Label>
 
-        <Button type="submit">Register</Button>
+        <Button type="submit">
+          <ColorRing
+          height={200}
+          width={200}
+          ariaLabel="blocks-loading"
+          />
+          <Loader />
+          Register
+        </Button>
       </Form>
     </Container>
   );

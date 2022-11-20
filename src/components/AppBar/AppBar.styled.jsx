@@ -5,9 +5,9 @@ export const Header = styled.header`
     justify-content: space-between;
     align-items: center;
     // border-bottom: 1px solid #2A363B;
-    // margin-bottom: 15px;
     margin-left: 15px;
     margin-right: 15px;
+    margin-bottom: 30px;
 
   position: sticky;
   top: 0;
@@ -18,8 +18,8 @@ export const Header = styled.header`
   min-height: 64px;
   padding-right: 24px;
   padding-left: 24px;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-top: 26px;
+  padding-bottom: 26px;
   background-color: #1fd1f9;
     background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
     box-shadow: 0px 0px 0px 0px rgba(0, 65, 200, 0.5),

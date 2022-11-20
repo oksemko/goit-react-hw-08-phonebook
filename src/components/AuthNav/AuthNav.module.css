@@ -3,12 +3,17 @@
   text-decoration: none;
   padding: 12px;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 28px;
   color: #c4c3ca;
   line-height: 1.17;
 }
 
 .activeLink {
-  /* composes: link; */
-  color: #ff6b08;
+display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #1d47fd;
+  line-height: 1.17;
 }

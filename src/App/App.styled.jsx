@@ -13,7 +13,7 @@ export const Container = styled.div`
   background-repeat: no-repeat;
   background-size: 250%;
   border-radius: 10px;
-
+padding-top: 20px;
 
 `
 
