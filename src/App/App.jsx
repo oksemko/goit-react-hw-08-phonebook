@@ -32,21 +32,24 @@ function App() {
 
         <Routes>
           <Route path="/" element={<HomeView />} />
-          <Route path="register"
+          <Route
+            path="register"
             element={
               <PublicRoute>
                 <RegisterView />
               </PublicRoute>
             }
               />
-              <Route path="login"
+          <Route
+            path="login"
                 element={
                   <PublicRoute>
                     <LoginView />
                 </PublicRoute>
               }
           />
-          <Route path="contacts"
+          <Route
+            path="contacts"
             element={
               <PrivateRoute>
                 <ContactsForm />

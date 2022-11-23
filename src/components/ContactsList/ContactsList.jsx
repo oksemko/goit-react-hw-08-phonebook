@@ -9,13 +9,17 @@ import { List } from './ContactsList.styled';
 
 export const ContactsList = () => {
   const dispatch = useDispatch();
-  useEffect(() => dispatch(contactsOperations.fetchContacts()),
-    [dispatch]);
+  useEffect(() => {
+    dispatch(contactsOperations.fetchContacts())
+  },[dispatch]
+  );
+
   const filteredContacts = useSelector(selectFilteredContacts);
 
   return (
     <List>
-      {filteredContacts.map(({ id, name, number }) => {
+      {filteredContacts.map(item => {
+      const { id, name, number } = item;
         return (
           <ContactsItem
             contact={{ id, name, number }}

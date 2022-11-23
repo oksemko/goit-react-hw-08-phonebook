@@ -1,4 +1,5 @@
-import { configureStore } from '@reduxjs/toolkit';
+// eslint-disable-next-line
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,

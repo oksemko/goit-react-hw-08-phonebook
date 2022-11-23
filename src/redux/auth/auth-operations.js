@@ -5,7 +5,7 @@ axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 const token = {
   set(token) {
-    axios.defaults.headers.common.Authorization = `Barer ${token}`;
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
     axios.defaults.headers.common.Authorization = '';
@@ -37,7 +37,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
-    const { data } = await axios.post('/user/login', credentials);
+    const { data } = await axios.post('/users/login', credentials);
     token.set(data.token);
     return data;
   } catch (error) {
@@ -48,7 +48,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
 
 //  -----
 // POST @ /users/logout
-// header: Authorization: Bearer token
+// headers: Authorization: Bearer token
 // When logout is successful => remove token from HTTP-header
 // -----
 
@@ -82,7 +82,7 @@ const fetchCurrentUser = createAsyncThunk(
     token.set(persistedToken);
     try {
       const { data } = await axios.get('/users/current');
-      return { data };
+      return data;
     } catch (error) {
       // It`s needed to add error resolving (in TODO) and show error.message
     }
