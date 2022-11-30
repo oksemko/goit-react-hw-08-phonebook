@@ -18,6 +18,8 @@ const token = {
 //  When registration is successful => add token to HTTP-header
 // -----
 
+//credentials => name, e-mail, password
+
 const register = createAsyncThunk('auth/register', async credentials => {
   try {
     const { data } = await axios.post('/users/singup', credentials);
@@ -25,7 +27,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
     return data;
   } catch (error) {
     console.log('Error while creating user', error);
-    //  It`s needed to add error resolving (in TODO) and show error.message
+    //  It`s needed to add error resolving and show error.message
   }
 });
 
@@ -35,6 +37,8 @@ const register = createAsyncThunk('auth/register', async credentials => {
 // When login is successful => add token to HTTP-header
 // -----
 
+//credentials => e-mail, password
+
 const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
     const { data } = await axios.post('/users/login', credentials);
@@ -42,7 +46,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
     return data;
   } catch (error) {
     console.log('Error while user is login', error);
-    //  It`s needed to add error resolving (in TODO) and show error.message
+    //  It`s needed to add error resolving and show error.message
   }
 });
 
@@ -54,11 +58,11 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
 
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {
-    await axios.post('/user/logout');
+    await axios.post('/users/logout');
     token.unset();
   } catch (error) {
     console.log('Error while user is logout', error);
-    //  It`s needed to add error resolving (in TODO) and show error.message
+    //  It`s needed to add error resolving and show error.message
   }
 });
 
@@ -84,7 +88,7 @@ const fetchCurrentUser = createAsyncThunk(
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
-      // It`s needed to add error resolving (in TODO) and show error.message
+      // It`s needed to add error resolving and show error.message
     }
   }
 );
