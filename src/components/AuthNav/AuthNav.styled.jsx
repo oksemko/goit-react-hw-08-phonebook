@@ -22,7 +22,7 @@ export const AuthNavList=styled.ul` position: relative;
 display: flex;
 `;
 export const AuthNavItem=styled.li` position: relative;
-margin: 10px;
+padding: 10px;
 `;
 export const AuthNavLink=styled(NavLink)` position: relative;
 top: 0;

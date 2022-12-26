@@ -12,6 +12,7 @@ import {
 
 from 'react-icons/fa';
 
+
 import {
   RiContactsBookFill
 }
@@ -22,8 +23,9 @@ export const NavigationList=styled.ul` position: relative;
 display: flex;
 `;
 
-export const NavigationItem=styled.li` position: relative;
-margin: 10px;
+export const NavigationItem=styled.li` ;
+// margin: 10px;
+padding: 10px;
 `;
 export const NavigationLink=styled(NavLink)` position: relative;
 top: 0;

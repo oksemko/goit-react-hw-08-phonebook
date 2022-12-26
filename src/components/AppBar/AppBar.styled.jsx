@@ -17,9 +17,9 @@ export const Header = styled.header`
   width: 90%;
   min-height: 64px;
   padding-right: 24px;
-  padding-left: 24px;
-  padding-top: 26px;
-  padding-bottom: 26px;
+  // padding-left: 24px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   background-color: #1fd1f9;
     background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
     box-shadow: 0px 0px 0px 0px rgba(0, 65, 200, 0.5),
@@ -31,7 +31,7 @@ export const Header = styled.header`
 
 
   {&}:hover {
- box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.664),
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.664),
   -4px -4px 6px 0 rgba(255, 255, 255, 0.664),
   inset -4px -4px 6px 0 rgba(255, 255, 255, 0.664),
   inset 4px 4px 6px 0 rgba(255, 255, 255, 0.664);
