@@ -11,6 +11,20 @@ import {
   deleteContactError,
 } from './contacts-actions';
 
+// GET @ /contacts
+const fetchContacts = () => async dispatch => {
+  dispatch(fetchContactsRequest());
+
+  try {
+    const { data } = await axios.get('/contacts');
+
+    dispatch(fetchContactsSuccess(data));
+  } catch (error) {
+    dispatch(fetchContactsError(error.message));
+  }
+};
+
+// POST @ /contacts
 const addContact =
   ({ name, number }) =>
   dispatch => {
@@ -27,18 +41,7 @@ const addContact =
       .catch(error => dispatch(addContactError(error.message)));
   };
 
-const fetchContacts = () => async dispatch => {
-  dispatch(fetchContactsRequest());
-
-  try {
-    const { data } = await axios.get('/contacts');
-
-    dispatch(fetchContactsSuccess(data));
-  } catch (error) {
-    dispatch(fetchContactsError(error.message));
-  }
-};
-
+// DELETE @ /contacts/:id
 const deleteContact = contactId => dispatch => {
   dispatch(deleteContactRequest());
 

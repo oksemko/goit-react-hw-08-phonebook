@@ -3,13 +3,12 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
+const setAuthHeader = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = '';
 };
 
 // -----
@@ -20,16 +19,21 @@ const token = {
 
 //credentials => name, e-mail, password
 
-const register = createAsyncThunk('auth/register', async credentials => {
-  try {
-    const { data } = await axios.post('/users/singup', credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    console.log('Error while creating user', error);
-    //  It`s needed to add error resolving and show error.message
+const register = createAsyncThunk(
+  'auth/register',
+  async (credentials, thunkAPI) => {
+    try {
+      const res = await axios.post('/users/singup', credentials);
+      // After successful registration, add the token to the HTTP header
+      setAuthHeader(res.data.token);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+      // console.log('Error while creating user', error);
+      //  It`s needed to add error resolving and show error.message
+    }
   }
-});
+);
 
 //  -----
 // POST @ /users/login
@@ -39,13 +43,15 @@ const register = createAsyncThunk('auth/register', async credentials => {
 
 //credentials => e-mail, password
 
-const logIn = createAsyncThunk('auth/login', async credentials => {
+const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
-    const { data } = await axios.post('/users/login', credentials);
-    token.set(data.token);
-    return data;
+    const res = await axios.post('/users/login', credentials);
+    // After successful login, add the token to the HTTP header
+    setAuthHeader(res.data.token);
+    return res.data;
   } catch (error) {
-    console.log('Error while user is login', error);
+    return thunkAPI.rejectWithValue(error.message);
+    // console.log('Error while user is login', error);
     //  It`s needed to add error resolving and show error.message
   }
 });
@@ -56,12 +62,13 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
 // When logout is successful => remove token from HTTP-header
 // -----
 
-const logOut = createAsyncThunk('auth/logout', async () => {
+const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/users/logout');
-    token.unset();
+    clearAuthHeader();
   } catch (error) {
-    console.log('Error while user is logout', error);
+    return thunkAPI.rejectWithValue(error.message);
+    // console.log('Error while user is logout', error);
     //  It`s needed to add error resolving and show error.message
   }
 });
@@ -80,14 +87,19 @@ const fetchCurrentUser = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
+      // If there is no token, exit without performing any request
       return thunkAPI.rejectWithValue();
     }
 
-    token.set(persistedToken);
+    setAuthHeader(persistedToken);
+    // token.set(persistedToken);
     try {
-      const { data } = await axios.get('/users/current');
-      return data;
+      // If there is a token, add it to the HTTP header and perform the request
+      // setAuthHeader(persistedToken);
+      const res = await axios.get('/users/current');
+      return res.data;
     } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
       // It`s needed to add error resolving and show error.message
     }
   }
