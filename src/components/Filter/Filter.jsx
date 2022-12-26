@@ -16,6 +16,7 @@ export const Filter = ({ title }) => {
     <Label>
       <span>{title}</span>
         <Input
+        placeholder="Searching ... "
         type="text"
         name="filter"
         value={value}
