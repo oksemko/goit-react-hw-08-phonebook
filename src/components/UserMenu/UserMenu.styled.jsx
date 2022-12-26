@@ -30,7 +30,7 @@ color: #2AA5A0;
 `
 
 export const Button = styled.button`
- position: relative;
+  position: relative;
   top: 0;
   width: 60px;
   height: 60px;
